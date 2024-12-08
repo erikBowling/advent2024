@@ -46,8 +46,8 @@ fn part_two(matrix: &Vec<Vec<i32>>) -> i32{
 
     let mut safe_reports: Vec<Vec<i32>> = matrix
         .iter()
-        .filter(|x| check_element_safe_distances(x, &acceptable_range))
         .filter(|x| (check_is_ascending(x) ^ check_is_descending(x)))
+        .filter(|x| check_element_safe_distances(x, &acceptable_range))
         .cloned()
         .collect();
     
