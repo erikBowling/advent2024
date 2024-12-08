@@ -1,4 +1,5 @@
 mod day01;
+mod day02;
 
 use std::env;
 
@@ -11,8 +12,7 @@ fn main() {
 
     match args[1].as_str() {
         "1" => day01::solve(),
-        // "2" => day02::solve(),
-        // Add more cases for other days
+        "2" => day02::solve(),
         _ => println!("Invalid day specified"),
     }
 
