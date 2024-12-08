@@ -37,21 +37,12 @@ fn part_one(matrix: &Vec<Vec<i32>>) -> i32 {
 
 fn part_two(matrix: &Vec<Vec<i32>>) -> i32{
     let acceptable_range: RangeInclusive<i32> = 1..=3;
-    let unsafe_reports_order: Vec<Vec<i32>> = matrix
+
+    let unsafe_reports: Vec<Vec<i32>> = matrix
         .iter()
-        .filter(|x| !(check_is_ascending(x) ^ check_is_descending(x)))
+        .filter(|x| !check_element_safe_distances(x, &acceptable_range) || !(check_is_ascending(x) ^ check_is_descending(x)))
         .cloned()
         .collect();
-
-    let unsafe_reports_space_between: Vec<Vec<i32>> = matrix
-        .iter()
-        .filter(|x| !check_element_safe_distances(x, &acceptable_range))
-        .cloned()
-        .collect();
-
-    let unsafe_reports: Vec<Vec<i32>> = [unsafe_reports_order, unsafe_reports_space_between].concat();
-
-    println!("Unsafe reports: {}", unsafe_reports.iter().count());
 
     let mut safe_reports: Vec<Vec<i32>> = matrix
         .iter()
@@ -59,18 +50,12 @@ fn part_two(matrix: &Vec<Vec<i32>>) -> i32{
         .filter(|x| (check_is_ascending(x) ^ check_is_descending(x)))
         .cloned()
         .collect();
-
-    println!("Safe reports: {}", safe_reports.iter().count());
     
-
     let mut dampened_safe_reports: Vec<Vec<i32>> = unsafe_reports
         .iter()
         .filter(|x| dampener(x, &acceptable_range))
         .cloned()
         .collect();
-
-    println!("Dampened safe reports: {}", dampened_safe_reports.iter().count());
-
 
     safe_reports.append(&mut dampened_safe_reports);
     
