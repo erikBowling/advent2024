@@ -4,7 +4,7 @@ use regex::Regex;
 
 
 pub fn solve(){
-    let file = File::open("data/day03_input.txt").expect("File day02_input.txt could not be found.");
+    let file = File::open("data/day03_input.txt").expect("File day03_input.txt could not be found.");
     let reader: BufReader<File> = BufReader::new(file);
 
     let mut corrupted_memory: Vec<String> = Vec::new();
@@ -14,7 +14,7 @@ pub fn solve(){
         corrupted_memory.push(str);
     }
 
-    println!("------------ Day Two Answers ------------");
+    println!("------------ Day Three Answers ------------");
     println!("Part One: {}", part_one(&corrupted_memory));
     println!("Part Two: {}", part_two(&corrupted_memory));
 }
